@@ -49,7 +49,7 @@ int main()
             }
             else if (s[m][n] == '1') {
                 count++;
-                if (count >= 2) {
+                if (count == 2) {
                     fprintf(output, "%d -> %d\n", b, m + 1);
                 }
             }
