@@ -83,7 +83,7 @@ int main()
     }
     fprintf(output, "}");
     fclose(output);
-    system("output.gv -Tpng -o graphtvd.png");
+    system("dot output.gv -Tpng -o graphtvd.png");
     system("graphtvd.png");
     return 0;
 }
