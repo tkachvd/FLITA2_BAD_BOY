@@ -3,7 +3,7 @@
 
 int main()
 {
-    FILE *input, *output;
+    FILE *input, *output, *output2;
     char a, s[30][30];
     int s2[30][30];
     int i = 0, j = 0, m = 0, n = 0, count = 0, b = 0;
@@ -36,20 +36,22 @@ int main()
             }
         }
     }
+    output2 = fopen("output2.txt", "w");
     for (int m = 0; m <= i; m++) {
-        printf("%d: ", m + 1);
+        fprintf(output2, "%d: ", m + 1);
         count = 0;
         for (int n = 0; n < j; n++) {
             if (s2[m][n] == '1') {
-                printf("%d ", n + 1);
+                fprintf(output2, "%d ", n + 1);
                 count++;
             }
         }
-        printf("\n");
+        fprintf(output2, "\n");
     }
-    
-    output = fopen("output.dot", "w"); 
-    fprintf(output, "digraph Grah {\n");
+    fclose(output2);
+    output = fopen("output.gv", "w"); 
+    fprintf(output, "graph G {\n");
+    fprintf(output, "node [shape = circle];\n");
     for (int n = 0; n < j; n++) {
         count = 0;
         for (int m = 0; m <= i; m++) {
@@ -60,12 +62,12 @@ int main()
             else if (s[m][n] == '1') {
                 count++;
                 if (count == 2) {
-                    fprintf(output, "%d -> %d\n", b, m + 1);
+                    fprintf(output, "%d -- %d\n", b, m + 1);
                 }
             }
         }
         if (count == 1) {
-            fprintf(output, "%d -> %d\n", b, b);
+            fprintf(output, "%d -- %d\n", b, b);
         }
     }
     for (int m = 0; m <= i; m++) { 
@@ -81,6 +83,7 @@ int main()
     }
     fprintf(output, "}");
     fclose(output);
-
+    system("output.gv -Tpng -o graphtvd.png");
+    system("graphtvd.png");
     return 0;
 }
