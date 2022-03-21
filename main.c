@@ -6,7 +6,7 @@ int main()
     FILE *input, *output, *output2;
     char a, s[30][30];
     int s2[30][30];
-    int i = 0, j = 0, m = 0, n = 0, count = 0, b = 0;
+    int i = 0, j = 0, count = 0, b = 0;
 
     input = fopen("input.txt", "r"); 
     while (!feof(input)) {
