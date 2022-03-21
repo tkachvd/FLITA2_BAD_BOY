@@ -40,7 +40,7 @@ int main()
     for (int m = 0; m <= i; m++) {
         fprintf(output2, "%d: ", m + 1);
         count = 0;
-        for (int n = 0; n < j; n++) {
+        for (int n = 0; n <= i; n++) {
             if (s2[m][n] == '1') {
                 fprintf(output2, "%d ", n + 1);
                 count++;
